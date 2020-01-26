@@ -51,7 +51,6 @@ if py2app_build:
 
 if py2exe_build:
     py2exe_options = {
-        'iconfile': 'packaging/data/icons/httprider.icns',
         # packages=["encodings"],
         # excludes=py_excludes + ['win32com.gen_py'],
         # silence py2exe error about not finding msvcp90.dll
