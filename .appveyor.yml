@@ -53,7 +53,7 @@ install:
   # Freezing w/ Py2Exe
   - rm -rf build dist
   - "%PYTHON%\\python.exe --version"
-  - python.exe setup.py py2exe
+  - "%PYTHON%\\python.exe setup.py py2exe"
   
   # Building artifact
   # - 7z a -tzip devrider-%BUILD_VERSION%.zip devrider.exe -mx0
