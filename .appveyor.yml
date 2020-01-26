@@ -52,7 +52,7 @@ install:
 
   # Freezing w/ Py2Exe
   - rm -rf build dist
-  - python.exe --version
+  - "%PYTHON%\\python.exe --version"
   - python.exe setup.py py2exe
   
   # Building artifact
