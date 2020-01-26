@@ -40,16 +40,34 @@ bdist_dir = tmp_package_dir.joinpath('build').as_posix(),
 APP = ['httprider/main.py']
 
 if py2app_build:
-    py2app_options = {
-        'iconfile': 'packaging/data/icons/httprider.icns'
-    }
+    py2app_options = dict(
+        iconfile='packaging/data/icons/httprider.icns'
+    )
 
     extra_options = dict(
         app=APP,
         options={'py2app': py2app_options},
     )
-else:
-    extra_options = dict()
+
+if py2exe_build:
+    py2exe_options = dict(
+        iconfile='packaging/data/icons/httprider.icns',
+        # packages=["encodings"],
+        # excludes=py_excludes + ['win32com.gen_py'],
+        # silence py2exe error about not finding msvcp90.dll
+        # dll_excludes=['MSVCP90.dll'],
+        # add sip so that PyQt4 works
+        # add PyQt4.QtSql so that sqlite needed by QHelpCollection works
+        # includes=py_includes + ["sip", "PyQt4.QtSql"],
+        compressed=1,
+        optimize=2,
+    )
+    
+    extra_options = dict(
+        app=APP,
+        options={'py2exe', py2exe_options}
+    )
+
 
 setup(
     name=app_name,
