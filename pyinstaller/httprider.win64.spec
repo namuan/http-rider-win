@@ -35,4 +35,4 @@ exe = EXE(pyz,
           debug=False,
           strip=False,
           upx=False,
-          console=False , icon='..\\httprider\\resources\\icons\\app.ico')
+          console=False , icon='..\\httprider\\resources\\icons\\httprider.ico')
