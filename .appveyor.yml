@@ -24,7 +24,7 @@ clone_folder: C:\projects\httprider
 environment:
   APPVEYOR_SKIP_FINALIZE_ON_EXIT: false
   PYTHONUNBUFFERED: 1
-  BUILD_VERSION: "0.6.0"
+  BUILD_VERSION: "0.6.1"
   matrix:
     - PYTHON: C:\Python36-x64
       PYTHON_VERSION: 3.6.6
@@ -64,14 +64,14 @@ nuget:
 
 test: off
 
-# deploy:
-#   release: $(BUILD_VERSION)
-#   description: 'DevRider Release $(BUILD_VERSION)'
-#   provider: GitHub
-#   auth_token:
-#     secure: qUFnrgAfsyPKWtP1gMPZHpv2KXLqQDosCrt3cZVG7ZlVpALn4yn7Y4WwWo4xhI3E
-#   artifact: devrider-$(BUILD_VERSION).zip
-#   draft: false
-#   prerelease: false
-#   on:
-#     branch: master
+deploy:
+  release: $(BUILD_VERSION)
+  description: 'HttpRider Release $(BUILD_VERSION)'
+  provider: GitHub
+  auth_token:
+    secure: qUFnrgAfsyPKWtP1gMPZHpv2KXLqQDosCrt3cZVG7ZlVpALn4yn7Y4WwWo4xhI3E
+  artifact: httprider-$(BUILD_VERSION).zip
+  draft: false
+  prerelease: false
+  on:
+    branch: master
