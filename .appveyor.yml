@@ -24,7 +24,7 @@ clone_folder: C:\projects\httprider
 environment:
   APPVEYOR_SKIP_FINALIZE_ON_EXIT: false
   PYTHONUNBUFFERED: 1
-  BUILD_VERSION: "0.6.0"
+  BUILD_VERSION: "0.2.0"
   matrix:
     - PYTHON: C:\Python36-x64
       PYTHON_VERSION: 3.6.6
@@ -39,25 +39,25 @@ install:
   - 7z x httprider.tar.gz
   - 7z x httprider.tar
   - move http-rider-%BUILD_VERSION% httprider
-  - copy setup.py httprider
   - cd httprider
   
   # Installing latest pip + dependencies
-  - "%PYTHON%\\python.exe -m pip install -U pip py2exe pywin32"
-  - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
+  - "%PYTHON%\\python.exe -m pip install -U pip"
+  - "%PYTHON%\\python.exe -m pip install -r requirements\\build.txt"
   
   # Setup build environment for MSVC++
   - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
-  # Freezing w/ Py2Exe
-  - rm -rf build dist
-  - "%PYTHON%\\python.exe --version"
-  - "%PYTHON%\\python.exe setup.py py2exe"
-  
+  # Freezing w/ PyInstaller
+  - cd C:\projects\httprider\pyinstaller
+  - call build.pyinstaller.win.bat 64
+  - cd ..
+  - move pyinstaller\dist\HttpRider.exe .
+
   # Building artifact
-  # - 7z a -tzip devrider-%BUILD_VERSION%.zip devrider.exe -mx0
-  # - appveyor PushArtifact devrider-%BUILD_VERSION%.zip
+  - 7z a -tzip httprider-%BUILD_VERSION%.zip httprider.exe -mx0
+  - appveyor PushArtifact httprider-%BUILD_VERSION%.zip
 
 nuget:
   disable_publish_on_pr: true

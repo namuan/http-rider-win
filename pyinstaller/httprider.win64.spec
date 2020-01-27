@@ -7,15 +7,14 @@ import PyQt5
 
 block_cipher = None
 
-a = Analysis(['..\\httprider\\httprider\\main.py'],
+a = Analysis(['..\\httprider\\bin\\app'],
              pathex=[
                   os.path.join(sys.modules['PyQt5'].__path__[0], 'Qt', 'bin'),
                   'C:\\Program Files (x86)\\Windows Kits\\10\\Redist\\ucrt\\DLLs\\x64',
                  '..\\httprider'
              ],
              binaries=[],
-             datas=[
-             ],
+             datas=[],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -36,4 +35,4 @@ exe = EXE(pyz,
           debug=False,
           strip=False,
           upx=False,
-          console=False , icon='..\\packaging\\data\\icons\\httprider.ico')
+          console=False , icon='..\\httprider\\resources\\icons\\app.ico')
